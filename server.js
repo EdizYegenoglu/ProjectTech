@@ -9,3 +9,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log('example app listening at http://localhost:${port}')
 })
+
+app.use(express.static('public'))
