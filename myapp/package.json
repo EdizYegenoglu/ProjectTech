@@ -1,0 +1,23 @@
+{
+  "name": "blok-tech",
+  "version": "1.0.0",
+  "description": "this is a project for blok-tech",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EdizYegenoglu/ProjectTech.git"
+  },
+  "author": "Ediz Yegenoglu",
+  "license": "MIT",
+  "dependencies": {
+    "camelcase": "^6.2.0",
+    "express": "^4.17.1",
+    "match-sorter": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
