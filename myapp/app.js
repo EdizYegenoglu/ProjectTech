@@ -30,7 +30,7 @@ app.get('/about', (req, res) => {
 // app.get('/about', (req, res) => {
 //     res.sendFile(__dirname + '/static/about.html')
 // })
-
+ 
 
 // listen on port 3000 
 app.listen(port, () => {
