@@ -1,0 +1,7 @@
+<h3>You searched for : <%= data.userQuery %> </h3>
+
+<ul>
+    <% data.searchResults.forEach(result=>{ %>
+        <li> <%= result %> </li>
+    <% }) %>
+</ul>

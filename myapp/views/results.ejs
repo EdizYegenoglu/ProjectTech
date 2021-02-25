@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <h1>You searched for : <%= data.subject %> </h1>
+    <ul>
+        <% data.searchResults.forEach(result=>{ %>
+            <li> <%= result %> </li>
+        <% }) %>
+    </ul>
+
+</body>
+
+
+</html>

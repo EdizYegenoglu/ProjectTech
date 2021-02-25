@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
-    <link rel="stylesheet" href="css/main.css">
-</head>
+<%- include('partials/head'); %>
+
 <body>
-    <h1>You searched for : <%= data.userQuery %> </h1>
-    <ul>
-        <% data.searchResults.forEach(result=>{ %>
-            <li> <%= result %> </li>
-        <% }) %>
-    </ul>
+    <%- include('partials/header'); %>
+
+    <h2>Find someone with the same interests.</h2>
+
+    <form action="/results" method="POST">
+        <label for="subject">Subject you want to talk about?</label>
+        <input type="text" name="subject">
+        <button>search</button>
+    </form>
 
 </body>
 
