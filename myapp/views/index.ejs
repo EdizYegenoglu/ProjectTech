@@ -3,15 +3,14 @@
 <body>
     <%- include('partials/header'); %>
 
-    <h2>Find someone with the same interests.</h2>
+    <h2>Filter</h2>
+    <%- include('partials/form'); %>
 
-    <form action="/results" method="POST">
-        <label for="subject">Subject you want to talk about?</label>
-        <input type="text" name="subject">
-        <button>search</button>
-    </form>
+    <h3>suggestions</h3>
+    <%- include('partials/suggestions.ejs'); %>
+
+<script src="../../static/script/script.js"></script>
 
 </body>
 
 
-</html>
