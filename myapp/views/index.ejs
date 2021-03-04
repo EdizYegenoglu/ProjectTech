@@ -1,15 +1,20 @@
 <%- include('partials/head'); %>
 
-<body>
+<body id="index">
+  
     <%- include('partials/header'); %>
 
-    <h2>Filter</h2>
-    <%- include('partials/form'); %>
+    <section>
+        <h2>Filter</h2>
+        <%- include('partials/form'); %>
+    </section>
 
-    <h3>suggestions</h3>
-    <%- include('partials/suggestions.ejs'); %>
+    <section>
+        <h3>suggestions</h3>
+        <%- include('partials/suggestions.ejs'); %>
+    </section>
 
-<script src="../../static/script/script.js"></script>
+    <script src="../../static/script/script.js"></script>
 
 </body>
 
