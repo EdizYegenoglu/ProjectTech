@@ -15,10 +15,10 @@ app.use('/static', express.static(path.join(__dirname, '/static')));
 // set views
 app.set('views', './views');
 app.set('view engine', 'ejs');
+
 let db = null;
 
 async function connectDB() {
-  async function connectDB() {
     //get URI form env file
     const uri = process.env.ATLAS_URI
     //make connection to DB
@@ -43,23 +43,25 @@ async function connectDB() {
   app.get("/", async (req, res) => {
     let subject= {}
     subject = await db.collection('subject').find({});
-      res.render('index', {
-        data: { searchSubject: subject }
-    });
+    res.render('index')
   });
 
   app.post("/results", async (req, res) => {
     const subject = {}
     subject = await db.collection('subject').find({});
-    const searchSubject = subject.filter(function (subject) {
+    const filteredSubject = subject.filter(function (subject) {
       return subject = (req.body.subject)
     });
+    res.render('/results', {
+      data: {
+        searchSubject: filteredSubject
+      }
   });
-};
+  });
 
-app.get('/', (req, res) => {
-  res.render('index')
-}); 
+// app.get('/', (req, res) => {
+//   res.render('index')
+// }); 
 
 
 
