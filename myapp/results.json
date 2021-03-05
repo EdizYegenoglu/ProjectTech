@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Albert",
+        "age": 20,
+        "subject": "music"
+    },
+    {
+        "name": "Bas",
+        "age": 28,
+        "subject": "food"
+    },
+    {
+        "name": "Chiara",
+        "age": 21,
+        "subject": "music"
+    },
+    {
+        "name": "Dave",
+        "age": 19,
+        "subject": "fashion"
+    }
+]
