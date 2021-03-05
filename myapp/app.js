@@ -20,12 +20,12 @@ let db = null;
 
 async function connectDB() {
     //get URI form env file
-    const uri = process.env.ATLAS_URI
+    const uri = process.env.DB_URI 
     //make connection to DB
     const options = { useUnifiedTopology: true };
     const client = new MongoClient(uri, options)
     await client.connect();
-    db = await client.db(process.env.ATLAS_URI)
+    db = await client.db(process.env.DB_NAME) 
   }
   connectDB(); 
     try {
@@ -42,26 +42,25 @@ async function connectDB() {
 
   app.get("/", async (req, res) => {
     let subject= {}
-    subject = await db.collection('subject').find({});
+    subject = await db.collection('subject').find({}).toArray();
     res.render('index')
   });
 
   app.post("/results", async (req, res) => {
-    const subject = {}
-    subject = await db.collection('subject').find({});
+    subject = await db.collection('subject').find({}).toArray();
     const filteredSubject = subject.filter(function (subject) {
       return subject = (req.body.subject)
     });
-    res.render('/results', {
+    res.render('results', {
       data: {
         searchSubject: filteredSubject
       }
-  });
+    });
   });
 
-// app.get('/', (req, res) => {
-//   res.render('index')
-// }); 
+  // app.post('/results', (req, res) => {
+  //   res.render("results")
+  // }); 
 
 
 
