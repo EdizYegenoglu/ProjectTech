@@ -46,7 +46,7 @@ async function connectDB() {
     res.render('index', {
       results: 0
     })
-  });
+  }); 
 
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();

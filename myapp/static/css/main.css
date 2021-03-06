@@ -140,7 +140,7 @@ position: relative;
 text-align: center;
 }
 
-form label{
+section:nth-of-type(1) label{
     position: relative;
 }
 
@@ -186,6 +186,17 @@ h3{
     background-color: lightgray;
 }
 
+#index section:nth-of-type(2) form input {
+	display: none;
+}
+
+#index section:nth-of-type(2) form button {
+	position: absolute;
+	padding: 6em 5em;
+	bottom: 0em;
+	left: .3em;
+	opacity: 0;
+}
 a{
     color: black;
     text-decoration: none;

@@ -55,6 +55,8 @@ function toggleDropDown() {
   }
 }
 
+
+
 // const dropDownTwee = document.querySelector("#lijstTwee")
 // const pijlTwee = document.querySelector("#pijlTwee")
 
