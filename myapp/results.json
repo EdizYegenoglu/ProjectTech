@@ -2,7 +2,8 @@
     {
         "name": "Albert",
         "age": 20,
-        "subject": "music"
+        "subject": "music",
+        "image": "image.png"
     },
     {
         "name": "Bas",

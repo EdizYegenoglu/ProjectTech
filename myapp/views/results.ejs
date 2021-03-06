@@ -9,8 +9,11 @@
     </section>
 
     <section>
-        <h3>Other people who like: <%= data.searchSubject %> </h3>
+        <h3><%= results %> people who like: <%= searchSubject %> </h3>
+    </section>
 
+    <section>
+        <%- include('partials/accountLijst.ejs'); %>
     </section>
 
     <script src="../../static/script/script.js"></script>

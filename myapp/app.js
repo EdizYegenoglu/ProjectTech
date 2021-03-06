@@ -39,24 +39,28 @@ async function connectDB() {
   app.use(bodyParser.urlencoded({
     extended: true
   }));
-
+ 
   app.get("/", async (req, res) => {
-    let subject= {}
-    subject = await db.collection('subject').find({}).toArray();
-    res.render('index')
+    let Accounts= {}
+    Accounts = await db.collection('Accounts').find({}).toArray();
+    res.render('index', {
+      results: 0
+    })
   });
 
   app.post("/results", async (req, res) => {
-    subject = await db.collection('subject').find({}).toArray();
-    const filteredSubject = subject.filter(function (subject) {
-      return subject = (req.body.subject)
+    Accounts = await db.collection('Accounts').find({}).toArray();
+    const searched = (req.body.subject)
+    const filteredSubject = Accounts.filter(function (Accounts) {
+      return Accounts.subject.includes(req.body.subject)
     });
-    res.render('results', {
-      data: {
-        searchSubject: filteredSubject
-      }
+    res.render('results', { 
+      results: filteredSubject.length, 
+      searchSubject: searched,
+      name: filteredSubject.name,
+      image: filteredSubject.image
+      });
     });
-  });
 
 // listen on port 3000
 app.listen(port, () => {
