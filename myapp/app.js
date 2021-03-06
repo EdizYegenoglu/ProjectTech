@@ -51,9 +51,12 @@ async function connectDB() {
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();
     const searched = (req.body.subject)
+    const info = Accounts.map(item => ({name: item.name, image: item.image}));
     const filteredSubject = Accounts.filter(function (Accounts) {
       return Accounts.subject.includes(req.body.subject)
     });
+    console.log(info);
+
     res.render('results', { 
       results: filteredSubject.length, 
       searchSubject: searched,
