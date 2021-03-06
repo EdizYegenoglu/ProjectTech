@@ -38,10 +38,10 @@ async function connectDB() {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
-  }));
+  })); 
  
   app.get("/", async (req, res) => {
-    let Accounts= {}
+    let Accounts= {}  
     Accounts = await db.collection('Accounts').find({}).toArray();
     res.render('index', {
       results: 0
@@ -51,17 +51,13 @@ async function connectDB() {
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();
     const searched = (req.body.subject)
-    const info = Accounts.map(item => ({name: item.name, image: item.image}));
     const filteredSubject = Accounts.filter(function (Accounts) {
       return Accounts.subject.includes(req.body.subject)
     });
-    console.log(info);
-
     res.render('results', { 
       results: filteredSubject.length, 
       searchSubject: searched,
-      name: filteredSubject.name,
-      image: filteredSubject.image
+      list: filteredSubject
       });
     });
 
