@@ -7,6 +7,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require("dotenv").config();
 const { MongoClient } = require('mongodb');
+const { userInfo } = require('os');
 
 // static files
 app.use(express.static(`${__dirname}static`));
@@ -39,14 +40,6 @@ async function connectDB() {
   app.use(bodyParser.urlencoded({
     extended: true
   })); 
- 
-  app.get("/", async (req, res) => {
-    let Accounts= {}  
-    Accounts = await db.collection('Accounts').find({}).toArray();
-    res.render('index', {
-      results: 0
-    })
-  }); 
 
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();
@@ -56,29 +49,37 @@ async function connectDB() {
       return Accounts.subject.includes(req.body.subject)
     });
 
+  const searchHistory = db.collection('searchHistory');
+    searchHistory.insertOne( {subject: req.body.subject} )
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.error(err)
+    );
+
   res.render('results', { 
     results: filteredSubject.length, 
     searchSubject: searched,
     list: filteredSubject      
+  }); 
+
+  app.get("/", async (req, res) => {
+    let Accounts= {}  
+    Accounts = await db.collection('Accounts').find({}).toArray();
+    res.render('index', {
+      results: 0
+    })
+  }); 
+
+  app.get("/history", async (req, res) => {
+    db.collection('searchHistory').find().toArray()
+    .then(res => {
+      res.render('history', {
+        history: res
+      })
+      .catch(err => console.error(err)) 
+    }); 
   });
-
-
-  // app.post("/results", async (req, res) => {
-  // searchHistory = await db.collection('searchHistory').insert({}).toArray();
-
-  // const searchList = searchHistory.filter(function (searchHistory) {
-  //   return searchHistory.subject.includes(req.body.subject)
-  // });
-  // res.render('history'), {
-  //   searchedWords: searchList
-  // };
-
-  // app.get("/history", (req, res) => {
-  //   res.render('history' {
-  //     history: ,
-  //     searchedWords: 
-  //   })
-  // });
 });
 
 
