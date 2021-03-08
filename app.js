@@ -48,12 +48,9 @@ async function connectDB() {
     })
   }); 
 
-  app.get("history", async (req, res) => {
-    db.collection('searchHistory').find().toArray()
-      res.render('history', {
-        history: res
-      })
-  });
+  app.get("/history", (req, res) => {
+    res.render('history')
+  })
 
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();
@@ -63,19 +60,27 @@ async function connectDB() {
       return Accounts.subject.includes(req.body.subject)
     });
 
-  const searchHistory = db.collection('searchHistory');
+    // toevoegen van gezochte onderwerp naar database 
+    const searchHistory = db.collection('searchHistory');
     searchHistory.insertOne( {subject: req.body.subject} )
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => console.error(err)
-    );
 
   res.render('results', { 
     results: filteredSubject.length, 
     searchSubject: searched,
     list: filteredSubject      
   }); 
+
+  app.post("/history", async (req, res) => {
+    let searchHistory= {}
+    searchHistory = await db.collection('searchHistory').find({}).toArray();
+    const historyItem = searchHistory.filter(function(searchHistory) {
+      return searchHistory.subject.includes(req.body.subject)
+    })
+      res.render('history', {
+        history: res,
+        historyItem: historyItem
+      })
+  });
 });
 
 
@@ -84,7 +89,7 @@ app.use((req, res) => {
   res.status(404).send("this page does not exist.");
 });
 
-// listen on port 3000
+// listen on port 4000
 app.listen(port, () => {
-  console.log('example app listening at http://localhost:3000');
+  console.log('example app listening at http://localhost:4000');
 });
