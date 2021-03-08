@@ -7,7 +7,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require("dotenv").config();
 const { MongoClient } = require('mongodb');
-const { userInfo } = require('os');
 
 // static files
 app.use(express.static(`${__dirname}static`));
@@ -41,6 +40,21 @@ async function connectDB() {
     extended: true
   })); 
 
+  app.get("/", async (req, res) => {
+    let Accounts= {}  
+    Accounts = await db.collection('Accounts').find({}).toArray();
+    res.render('index', {
+      results: 0
+    })
+  }); 
+
+  app.get("history", async (req, res) => {
+    db.collection('searchHistory').find().toArray()
+      res.render('history', {
+        history: res
+      })
+  });
+
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();
 
@@ -62,24 +76,6 @@ async function connectDB() {
     searchSubject: searched,
     list: filteredSubject      
   }); 
-
-  app.get("/", async (req, res) => {
-    let Accounts= {}  
-    Accounts = await db.collection('Accounts').find({}).toArray();
-    res.render('index', {
-      results: 0
-    })
-  }); 
-
-  app.get("/history", async (req, res) => {
-    db.collection('searchHistory').find().toArray()
-    .then(res => {
-      res.render('history', {
-        history: res
-      })
-      .catch(err => console.error(err)) 
-    }); 
-  });
 });
 
 
