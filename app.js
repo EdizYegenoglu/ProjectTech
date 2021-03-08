@@ -48,9 +48,19 @@ async function connectDB() {
     })
   }); 
 
-  app.get("/history", (req, res) => {
-    res.render('history')
+
+  app.get("/history", async (req, res) => {
+    let searchHistory= {}
+    searchHistory = await db.collection('searchHistory').find({}).toArray();
+    const historyItem = searchHistory.filter(function(searchHistory) {
+      return searchHistory.subject.includes(req.body.subject)
+    })
+  res.render('history', {
+    // history: res,
+    historyItem: historyItem,
   })
+})
+
 
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();
@@ -59,27 +69,19 @@ async function connectDB() {
     const filteredSubject = Accounts.filter(function (Accounts) {
       return Accounts.subject.includes(req.body.subject)
     });
-
-    // toevoegen van gezochte onderwerp naar database 
-    const searchHistory = db.collection('searchHistory');
-    searchHistory.insertOne( {subject: req.body.subject} )
-
   res.render('results', { 
     results: filteredSubject.length, 
     searchSubject: searched,
     list: filteredSubject      
   }); 
 
+
+
   app.post("/history", async (req, res) => {
-    let searchHistory= {}
-    searchHistory = await db.collection('searchHistory').find({}).toArray();
-    const historyItem = searchHistory.filter(function(searchHistory) {
-      return searchHistory.subject.includes(req.body.subject)
-    })
-      res.render('history', {
-        history: res,
-        historyItem: historyItem
-      })
+
+        // toevoegen van gezochte onderwerp naar database 
+        const searchHistory = db.collection('searchHistory');
+        searchHistory.insertOne( {subject: req.body.subject} )
   });
 });
 
