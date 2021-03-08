@@ -50,16 +50,42 @@ async function connectDB() {
 
   app.post("/results", async (req, res) => {
     Accounts = await db.collection('Accounts').find({}).toArray();
+
     const searched = (req.body.subject)
     const filteredSubject = Accounts.filter(function (Accounts) {
       return Accounts.subject.includes(req.body.subject)
     });
-    res.render('results', { 
-      results: filteredSubject.length, 
-      searchSubject: searched,
-      list: filteredSubject
-      });
-    });
+
+  res.render('results', { 
+    results: filteredSubject.length, 
+    searchSubject: searched,
+    list: filteredSubject      
+  });
+
+
+  // app.post("/results", async (req, res) => {
+  // searchHistory = await db.collection('searchHistory').insert({}).toArray();
+
+  // const searchList = searchHistory.filter(function (searchHistory) {
+  //   return searchHistory.subject.includes(req.body.subject)
+  // });
+  // res.render('history'), {
+  //   searchedWords: searchList
+  // };
+
+  // app.get("/history", (req, res) => {
+  //   res.render('history' {
+  //     history: ,
+  //     searchedWords: 
+  //   })
+  // });
+});
+
+
+//404
+app.use((req, res) => {
+  res.status(404).send("this page does not exist.");
+});
 
 // listen on port 3000
 app.listen(port, () => {
