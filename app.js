@@ -53,7 +53,7 @@ app.post('/results', async (req, res) => {
   const filteredSubject = Accounts.filter(function (Accounts) {
     return Accounts.subject.includes(req.body.subject);
   });
-
+ 
   // toevoegen van gezochte onderwerp naar database 
   const searchHistory = db.collection('searchHistory');
   searchHistory.insertOne({ subject: req.body.subject });
@@ -77,7 +77,7 @@ app.get('/history', async (req, res) => {
     historyItem: historyItem
   });
 });
-
+ 
 // delete history 
 // app.delete('/history', async (req, res) => {
 
