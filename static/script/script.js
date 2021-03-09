@@ -8,7 +8,7 @@ ham.addEventListener('click', toggleHamburger);
 hamClose.addEventListener('click', toggleHamburger);
 x.addEventListener('click', toggleHamburger);
 
-// toggles hamburger menu in and out when clicking on the hamburger
+// hamburger menu in en uit klappen
 function toggleHamburger() {
   navbar.classList.toggle('showNav');
   ham.classList.toggle('showClose');
