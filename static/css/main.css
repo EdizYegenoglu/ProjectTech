@@ -237,3 +237,10 @@ a{
 #history h2{ 
 	margin-left: .8em;
 }
+
+#history section:nth-of-type(3) button{
+	position: fixed;
+	padding: 1em;
+	justify-content: center;
+	margin: 5em 10em;
+}

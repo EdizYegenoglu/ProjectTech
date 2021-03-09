@@ -55,23 +55,21 @@ function toggleDropDown() {
   }
 }
 
-
-
-// const dropDownTwee = document.querySelector("#lijstTwee")
-// const pijlTwee = document.querySelector("#pijlTwee")
-
-// pijlTwee.addEventListener("click", toggleDropDownTwee)
-
-// function toggleDropDownTwee(){
-//   if (dropDownTwee.style.display === "block") {
-//     dropDownTwee.style.display = "none";
-//     pijlTwee.style.transform = "rotate(0deg)";
-//   }
-
-//   else {
-//     dropDownTwee.style.display = "block";
-//     pijlTwee.style.transform = "rotate(180deg)";
-//     pijlTwee.style.transition = ".6s";
-//   }
-// }
 // einde dropdown in menu
+
+// delete history 
+// const deleteButton = document.querySelector('#deleteButton')
+// deleteButton.addEventListener('click', _ => {
+//   fetch('/history', {
+//     method: 'delete',
+//     body: JSON.stringify({
+//       subject: 'music'
+//     })
+//   })
+//   .then(res => {
+//     if(res.ok) return res.json()
+//   })
+//   .then(data => {
+//     window.location.reload()
+//   })
+// })
