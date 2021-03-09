@@ -240,7 +240,7 @@ a{
 
 #history section:nth-of-type(3) button{
 	position: fixed;
+	bottom: 4em;
+	left: 10em;
 	padding: 1em;
-	justify-content: center;
-	margin: 5em 10em;
 }
