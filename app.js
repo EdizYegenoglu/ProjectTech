@@ -86,8 +86,9 @@ app.get('/history', async (req, res) => {
 app.use((req, res) => {
   res.status(404).send("this page does not exist.");
 });
+
 // listen on port 4000
-app.listen(port, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log('example app listening at ${port}!');
 });
 
