@@ -1,7 +1,7 @@
 const express = require('express');
 const slug = require('slug');
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000; 
 const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require("dotenv").config();
@@ -79,6 +79,7 @@ app.get('/history', async (req, res) => {
 });
  
 // delete history 
+
 // app.delete('/history', async (req, res) => {
 
 //404
@@ -89,3 +90,4 @@ app.use((req, res) => {
 app.listen(port, () => {
   console.log('example app listening at http://localhost:4000');
 });
+
