@@ -88,6 +88,6 @@ app.use((req, res) => {
 });
 // listen on port 4000
 app.listen(port, () => {
-  console.log('example app listening at http://localhost:4000');
+  console.log('example app listening at ${port}!');
 });
 
