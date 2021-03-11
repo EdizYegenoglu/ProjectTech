@@ -1,7 +1,7 @@
 const express = require('express');
 const slug = require('slug');
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require("dotenv").config();
