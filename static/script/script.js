@@ -56,20 +56,3 @@ function toggleDropDown() {
 }
 
 // einde dropdown in menu
-
-// delete history 
-// const deleteButton = document.querySelector('#deleteButton')
-// deleteButton.addEventListener('click', _ => {
-//   fetch('/history', {
-//     method: 'delete',
-//     body: JSON.stringify({
-//       subject: 'music'
-//     })
-//   })
-//   .then(res => {
-//     if(res.ok) return res.json()
-//   })
-//   .then(data => {
-//     window.location.reload()
-//   })
-// })

@@ -244,3 +244,8 @@ a{
 	left: 10em;
 	padding: 1em;
 }
+
+#history section:nth-of-type(3) ul{
+	display:flex;
+	flex-direction: column-reverse;
+}

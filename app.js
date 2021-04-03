@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const dotenv = require("dotenv").config();
 const { MongoClient } = require('mongodb');
 
+// const connectDB = require('./controllers/database.controller')
+
 // static files
 app.use(express.static(`${__dirname}static`));
 app.use('/static', express.static(path.join(__dirname, '/static')));
@@ -49,6 +51,7 @@ app.get("/", async (req, res) => {
 // gezochte onderwerp 
 app.post('/results', async (req, res) => {
   Accounts = await db.collection('Accounts').find({}).toArray();
+  console.log(Accounts)
   const searched = (req.body.subject);
   const filteredSubject = Accounts.filter(function (Accounts) {
     return Accounts.subject.includes(req.body.subject);
@@ -79,8 +82,10 @@ app.get('/history', async (req, res) => {
 });
  
 // delete history 
-
-// app.delete('/history', async (req, res) => {
+app.post('/history', (req, res) => {
+  db.collection('searchHistory').remove({});
+  res.redirect('history');
+});
 
 //404
 app.use((req, res) => {

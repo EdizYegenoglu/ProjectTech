@@ -1,25 +1,27 @@
 <%- include('partials/head'); %>
 
-<body id="history">
+    <body id="history">
 
-    <%- include('partials/header'); %>
+        <%- include('partials/header'); %>
 
-    <section>
-        <h2>History</h2>
-    </section>
+            <section>
+                <h2>History</h2>
+            </section>
 
-    <section>
-        <%- include('partials/historyList'); %>
-    </section>
+            <section>
+                <%- include('partials/historyList'); %>
+            </section>
 
-    <section>
-        <button id="deleteButton">Delete history</button>
-    </section>
+            <section>
+                <form action="/history" method="POST">
+                    <button>Delete history</button>
+                </form>
+            </section>
 
 
 
-    <script src="../../static/script/script.js"></script>
+            <script src="../../static/script/script.js"></script>
 
-</body>
+    </body>
 
-</html>
+    </html>
