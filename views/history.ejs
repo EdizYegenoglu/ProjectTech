@@ -11,12 +11,17 @@
             <section>
                 <%- include('partials/historyList'); %>
             </section>
-
             <section>
                 <form action="/history" method="POST">
-                    <button>Delete history</button>
+                    <button class="c-button">Delete history</button>
                 </form>
             </section>
+
+            <section class="c-popup" js-hook-module-popup>
+                <h2>History deleted!</h2>
+                <button class="c-button">I get it</button>
+            </section>
+
 
 
 
