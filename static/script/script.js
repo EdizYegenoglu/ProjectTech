@@ -54,15 +54,3 @@ function toggleDropDown() {
     pijl.style.transition = '.6s';
   }
 }
-
-// einde dropdown in menu
-
-// history confirm 
-// const deleted = document.querySelector('.c-popup')
-// const message = document.querySelector('.c-button')
-
-// message.addEventListener('click', confirmation)
-
-// function confirmation(){
-//   deleted.classList.toggle("displayPopup");
-// }
