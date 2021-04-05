@@ -6,6 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require("dotenv").config();
 const { MongoClient } = require('mongodb');
+const { Router } = require('express');
 
 // const connectDB = require('./controllers/database.controller')
 
@@ -71,12 +72,6 @@ app.post('/results', async (req, res) => {
 // history lijst weergeven 
 app.get('/history', async (req, res) => {
   let searchHistory = {};
-  let historyStatus = {};
-
-  historyStatus = await db.collection('historyStatus').find().toArray();
-  const confirmAction = historyStatus.filter(function (historyStatus) {
-    return historyStatus.deleted;
-  });
 
   searchHistory = await db.collection('searchHistory').find().toArray();
   const historyItem = searchHistory.filter(function (searchHistory) {
@@ -86,29 +81,26 @@ app.get('/history', async (req, res) => {
   res.render('history', {
     history: res,
     historyItem: historyItem,
-    confirmAction: confirmAction
+    deleted: ''
   });
 });
  
 // delete history 
-app.post('/history', (req, res) => {
+app.post('/history', async (req, res) => {
   db.collection('searchHistory').deleteMany({});
-  db.collection('historyStatus').updateOne({
-    deleted: "test"
-  },
-  { $set: {
-      deleted: "doe"
-    }
-  })
-  db.collection('historyStatus').updateOne({
-    deleted: "doe"
-  },
-  { $set:{
-      deleted: "test"
-    }
-  }),
-  
-  res.redirect('history');
+
+  let searchHistory = {};
+
+  searchHistory = await db.collection('searchHistory').find().toArray();
+  const historyItem = searchHistory.filter(function (searchHistory) {
+    return searchHistory.subject;
+  });
+
+  res.render('history', {
+    history: res,
+    historyItem: historyItem,
+    deleted: 'History deleted succesfully!'
+  });
 });
 
 //404

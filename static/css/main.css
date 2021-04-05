@@ -238,6 +238,10 @@ a{
 	margin-left: .8em;
 }
 
+#history section:nth-of-type(2){
+	margin-left: 2em;
+}
+
 #history section:nth-of-type(3) button{
 	position: fixed;
 	bottom: 4em;
@@ -249,39 +253,3 @@ a{
 	display:flex;
 	flex-direction: column-reverse;
 }
-
-
-/* .c-popup {
-	display: none;
-	margin-left: auto;
-	margin-right: auto;
-	position: fixed;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 10;
-	background-color: white;
-	border: solid black;
-	animation: glow 1s infinite alternate;
-	border-radius: 1em;
-	width: fit-content;
-	width: 20em;
-}
-.c-popup h2 {
-	  text-align: center;
-	  margin: 1em auto;
-	}
-.c-button {
-	  border-radius: 1.2em;
-	  padding: 10px 2em;
-	  margin: 2em auto;
-	  display: block;
-}
-
-.c-popup button:hover{
-	cursor: pointer
-}
- 
-.displayPopup{
-	display: block;
-} */
