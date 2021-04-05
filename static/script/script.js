@@ -58,11 +58,11 @@ function toggleDropDown() {
 // einde dropdown in menu
 
 // history confirm 
-const deleted = document.querySelector('.c-popup')
-const message = document.querySelector('.c-button')
+// const deleted = document.querySelector('.c-popup')
+// const message = document.querySelector('.c-button')
 
-message.addEventListener('click', confirmation)
+// message.addEventListener('click', confirmation)
 
-function confirmation(){
-  deleted.classList.toggle("displayPopup");
-}
+// function confirmation(){
+//   deleted.classList.toggle("displayPopup");
+// }

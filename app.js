@@ -71,19 +71,43 @@ app.post('/results', async (req, res) => {
 // history lijst weergeven 
 app.get('/history', async (req, res) => {
   let searchHistory = {};
+  let historyStatus = {};
+
+  historyStatus = await db.collection('historyStatus').find().toArray();
+  const confirmAction = historyStatus.filter(function (historyStatus) {
+    return historyStatus.deleted;
+  });
+
   searchHistory = await db.collection('searchHistory').find().toArray();
   const historyItem = searchHistory.filter(function (searchHistory) {
     return searchHistory.subject;
   });
+
   res.render('history', {
     history: res,
-    historyItem: historyItem
+    historyItem: historyItem,
+    confirmAction: confirmAction
   });
 });
  
 // delete history 
 app.post('/history', (req, res) => {
-  db.collection('searchHistory').remove({});
+  db.collection('searchHistory').deleteMany({});
+  db.collection('historyStatus').updateOne({
+    deleted: "test"
+  },
+  { $set: {
+      deleted: "doe"
+    }
+  })
+  db.collection('historyStatus').updateOne({
+    deleted: "doe"
+  },
+  { $set:{
+      deleted: "test"
+    }
+  }),
+  
   res.redirect('history');
 });
 
