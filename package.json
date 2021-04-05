@@ -4,7 +4,7 @@
   "description": "this is a project for blok-tech",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
